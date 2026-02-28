@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome — Himachal on a Budget</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #080a0f;
+    color: #e8dcc8;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px 80px;
+  }
+
+  .page {
+    width: 680px;
+    position: relative;
+  }
+
+  /* Cover banner */
+  .cover {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #0d1525 0%, #0a1020 50%, #0d1a10 100%);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+  }
+
+  .cover svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cover-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #c8a96e;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 10px;
+  }
+
+  .cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: #f0ece0;
+    line-height: 1;
+  }
+
+  .cover-title em {
+    color: #c8a96e;
+    font-style: italic;
+  }
+
+  /* Page icon + title */
+  .page-header {
+    padding: 28px 0 0;
+    margin-bottom: 32px;
+  }
+
+  .page-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 400;
+    color: #f0ece0;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .page-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #4a3a22;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Divider */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: #1a1608;
+    margin: 24px 0;
+  }
+
+  /* Welcome callout */
+  .callout {
+    background: #0f0d08;
+    border-left: 3px solid #c8a96e;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #c8b880;
+    font-style: italic;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 28px;
+  }
+
+  .section-heading {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #c8a96e;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #1a1608;
+  }
+
+  /* What's inside list */
+  .contents-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .content-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: #0d0b08;
+    border: 1px solid #1e1a10;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: border-color 0.2s ease;
+    cursor: default;
+  }
+
+  .content-item:hover {
+    border-color: #c8a96e40;
+  }
+
+  .content-emoji {
+    font-size: 18px;
+    width: 28px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .content-info {
+    flex: 1;
+  }
+
+  .content-title {
+    font-size: 14px;
+    color: #e8dcc8;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .content-desc {
+    font-size: 12px;
+    color: #4a3a22;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .content-arrow {
+    color: #3a2e18;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* Instructions */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: #c8a96e;
+    opacity: 0.35;
+    min-width: 22px;
+    line-height: 1.2;
+  }
+
+  .step-text {
+    font-size: 14px;
+    color: #a09070;
+    line-height: 1.6;
+    padding-top: 2px;
+  }
+
+  .step-text strong {
+    color: #e8dcc8;
+    font-weight: 500;
+  }
+
+  /* Important note */
+  .note {
+    background: #0d0b08;
+    border: 1px solid #1e1a10;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #6a5a3a;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .note strong {
+    color: #c8a96e;
+  }
+
+  /* The actual link section — locked */
+  .locked-section {
+    background: linear-gradient(135deg, #0d0b08, #100e08);
+    border: 1px solid #c8a96e25;
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .locked-icon { font-size: 28px; margin-bottom: 10px; }
+
+  .locked-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: #f0ece0;
+    margin-bottom: 6px;
+  }
+
+  .locked-desc {
+    font-size: 13px;
+    color: #5a4a2a;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+
+  .locked-link {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #080a0f;
+    background: #c8a96e;
+    padding: 10px 24px;
+    border-radius: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #2a2010;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Cover -->
+  <div class="cover">
+    <svg viewBox="0 0 680 180" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sky -->
+      <rect width="680" height="180" fill="#0a1020"/>
+      <radialGradient id="sg" cx="50%" cy="0%" r="80%">
+        <stop offset="0%" stop-color="#0d1f3c"/>
+        <stop offset="100%" stop-color="#080a0f"/>
+      </radialGradient>
+      <rect width="680" height="180" fill="url(#sg)"/>
+      <!-- Stars -->
+      <circle cx="45" cy="22" r="1" fill="white" opacity="0.8"/>
+      <circle cx="120" cy="14" r="0.7" fill="white" opacity="0.6"/>
+      <circle cx="210" cy="30" r="1.2" fill="white" opacity="0.9"/>
+      <circle cx="310" cy="10" r="0.8" fill="white" opacity="0.7"/>
+      <circle cx="390" cy="25" r="1" fill="white" opacity="0.8"/>
+      <circle cx="480" cy="12" r="1.3" fill="white" opacity="0.85"/>
+      <circle cx="570" cy="28" r="0.7" fill="white" opacity="0.6"/>
+      <circle cx="640" cy="16" r="1" fill="white" opacity="0.75"/>
+      <circle cx="178" cy="18" r="1.4" fill="#c8a96e" opacity="0.5"/>
+      <circle cx="520" cy="20" r="1.2" fill="#c8a96e" opacity="0.4"/>
+      <!-- Mountains back -->
+      <polygon points="0,180 0,110 80,70 160,100 240,50 320,85 400,40 480,80 560,55 640,90 680,70 680,180" fill="#1a2840" opacity="0.7"/>
+      <!-- Snow caps -->
+      <polygon points="232,58 240,50 248,58 244,68 240,66 236,68" fill="white" opacity="0.6"/>
+      <polygon points="392,48 400,40 408,48 404,58 400,56 396,58" fill="white" opacity="0.6"/>
+      <polygon points="552,63 560,55 568,63 564,73 560,71 556,73" fill="white" opacity="0.5"/>
+      <!-- Mountains front -->
+      <polygon points="0,180 0,140 100,110 200,130 300,100 400,125 500,105 600,125 680,110 680,180" fill="#0d1525"/>
+      <!-- Fog -->
+      <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#080a0f" stop-opacity="0"/>
+        <stop offset="100%" stop-color="#080a0f" stop-opacity="1"/>
+      </linearGradient>
+      <rect y="120" width="680" height="60" fill="url(#fg)"/>
+    </svg>
+    <div class="cover-text">
+      <div class="cover-eyebrow">Indian Student Travel Guide</div>
+      <div class="cover-title">Himachal on a <em>Budget</em></div>
+    </div>
+  </div>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <span class="page-icon">🏔️</span>
+    <div class="page-title">Welcome — Start Here</div>
+    <div class="page-meta">Kasol · Kheerganga · Tosh · 4 Days · ₹5,000</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Welcome callout -->
+  <div class="callout">
+    "Thank you for buying this guide. Everything in here is real — real prices, real hostels, real hacks from student trips. No sponsored content, no padding. Just what actually works."
+  </div>
+
+  <!-- What's inside -->
+  <div class="section">
+    <div class="section-heading">📦 What's Inside</div>
+    <div class="contents-list">
+      <div class="content-item">
+        <div class="content-emoji">💸</div>
+        <div class="content-info">
+          <div class="content-title">Full Budget Breakdown</div>
+          <div class="content-desc">Per person · bus, stay, food, cabs, trek</div>
+        </div>
+        <div class="content-arrow">→</div>
+      </div>
+      <div class="content-item">
+        <div class="content-emoji">🗺️</div>
+        <div class="content-info">
+          <div class="content-title">4-Day Itinerary</div>
+          <div class="content-desc">Day-wise plan with daily spend estimates</div>
+        </div>
+        <div class="content-arrow">→</div>
+      </div>
+      <div class="content-item">
+        <div class="content-emoji">🏠</div>
+        <div class="content-info">
+          <div class="content-title">Best Budget Hostels & Stays</div>
+          <div class="content-desc">Kasol, Tosh, Kheerganga — with real prices</div>
+        </div>
+        <div class="content-arrow">→</div>
+      </div>
+      <div class="content-item">
+        <div class="content-emoji">🍛</div>
+        <div class="content-info">
+          <div class="content-title">Where to Eat (and What to Avoid)</div>
+          <div class="content-desc">Dhabas, langar guide, budget cafe list</div>
+        </div>
+        <div class="content-arrow">→</div>
+      </div>
+      <div class="content-item">
+        <div class="content-emoji">🚐</div>
+        <div class="content-info">
+          <div class="content-title">Getting Around — Shared Cab Guide</div>
+          <div class="content-desc">Every route with shared vs private prices</div>
+        </div>
+        <div class="content-arrow">→</div>
+      </div>
+      <div class="content-item">
+        <div class="content-emoji">💡</div>
+        <div class="content-info">
+          <div class="content-title">7 Budget Hacks</div>
+          <div class="content-desc">Things most travel blogs won't tell you</div>
+        </div>
+        <div class="content-arrow">→</div>
+      </div>
+      <div class="content-item">
+        <div class="content-emoji">🎒</div>
+        <div class="content-info">
+          <div class="content-title">Packing List + Emergency Info</div>
+          <div class="content-desc">What to carry · hospitals · altitude tips</div>
+        </div>
+        <div class="content-arrow">→</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- How to use -->
+  <div class="section">
+    <div class="section-heading">⚡ How to Use This Guide</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Duplicate this Notion page</strong> — click "Duplicate" at the top right so you get your own editable copy</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Read the budget breakdown first</strong> — decide if the trip fits your current budget before planning dates</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Book your bus 1 week in advance</strong> — HRTC buses fill up fast on weekends, especially May–September</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>Screenshot the cab price table</strong> — you'll need it offline since there's no network beyond Kasol</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-text"><strong>Download Maps.me offline</strong> before leaving Delhi — works without internet on the trek</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Note -->
+  <div class="note">
+    <strong>Note:</strong> Prices in this guide are based on 2025 student trips. Bus fares and hostel rates may vary slightly by season. Always check HRTC website directly for current bus prices before booking.
+  </div>
+
+  <!-- The actual guide link — this is what gets revealed after payment -->
+  <div class="locked-section">
+    <div class="locked-icon">🖤</div>
+    <div class="locked-title">Your Full Guide is Ready</div>
+    <div class="locked-desc">Click below to access the complete Himachal Budget Handbook —<br>all sections, hostel database, itinerary and packing list.</div>
+    <a class="locked-link" href="https://heathered-blanket-977.notion.site/Himachal-on-a-Budget-The-Indian-Student-Handbook-31582a415e6a80288775ef966d21e06d">Open the Guide →</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Footer -->
+  <div class="footer">Indian Student Creator · 2025 · Not for redistribution</div>
+
+</div>
+</body>
+</html>
