@@ -1,1 +1,1 @@
-# Static Web Page
+# Static Web Page (Sample)
