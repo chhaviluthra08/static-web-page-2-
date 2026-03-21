@@ -1,1 +1,1 @@
-# Static Web Page - (Student Handbook)
+# Static Web Page - (Himachal on a Budget)
