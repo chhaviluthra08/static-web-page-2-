@@ -1,3 +1,1 @@
-# Static Web Page (Sample) 
-## 
-###
+# Static Web Page - (Student Handbook)
