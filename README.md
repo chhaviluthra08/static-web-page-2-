@@ -1,5 +1,5 @@
 # Himachal on a Budget - Landing Page
-
+  
 A simple, single-page HTML and CSS landing page designed to serve as a welcome portal for a digital product, specifically tailored for a student travel guide. 
 
 ## Overview
